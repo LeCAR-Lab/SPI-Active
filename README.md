@@ -4,7 +4,7 @@
 
 <!-- Robotics: Science and Systems (RSS) 2025 -->
 
-[[Website]](https://github.com/LeCAR-Lab/SPI-Active)
+[[Website]](https://lecar-lab.github.io/spi-active_/)
 [[Arxiv]]()
 [[Video]]()
 
