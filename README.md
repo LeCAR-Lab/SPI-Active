@@ -1,4 +1,4 @@
-<h1 align="center"> Sampling-based System Identification with Active Exploration for Legged Sim2Real Learning </h1>
+<h1 align="center"> Sampling-based System Identification with Active Exploration for Legged Robot Sim2Real Learning </h1>
 
 <div align="center">
 
