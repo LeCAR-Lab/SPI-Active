@@ -5,8 +5,8 @@
 <!-- Robotics: Science and Systems (RSS) 2025 -->
 
 [[Website]](https://lecar-lab.github.io/spi-active_/)
-[[Arxiv]]()
-[[Video]]()
+[[Arxiv]](https://arxiv.org/abs/2505.14266)
+[[Video]](https://youtu.be/pxyig4D1ZFs)
 
 <img src="assets/ip.png" style="height:100px;" />
 
