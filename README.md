@@ -29,7 +29,12 @@
 If you find our work useful, please consider citing us!
 
 ```bibtex
-
+@article{sobanbabu2025spiactive,
+      title={Sampling-Based System Identification with Active Exploration for Legged Robot Sim2Real Learning}, 
+      author={Nikhil Sobanbabu and Guanqi He and Tairan He and Yuxiang Yang and Guanya Shi},
+      year={2025}
+      url={https://arxiv.org/abs/2505.14266}, 
+}
 ```
 
 # License
