@@ -1,0 +1,15 @@
+# @package _global_
+
+defaults:
+  - terrain_base
+
+terrain:
+  mesh_type: plane
+  horizontal_scale: 0.1
+  vertical_scale: 0.005
+  border_size: 40
+  curriculum: False
+  static_friction: 1.0
+  dynamic_friction: 1.0
+  restitution: 0.0
+  slope_treshold: 0.75

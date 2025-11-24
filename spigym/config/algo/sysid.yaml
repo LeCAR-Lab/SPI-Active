@@ -1,0 +1,46 @@
+# @package _global_
+
+algo:
+  _target_: spigym.agents.sysid.sysid.SysId
+  _recursive_: False
+  config:
+    policy_checkpoint: null
+    num_learning_epochs: 5
+    num_mini_batches: 4
+    module_dict: null
+    base_name: 'base'
+    optimize:
+      iterations: 5
+      param: ["base_CoM", "base_inertia", "base_mass"]
+      prev_study_path: null
+      sampler: 
+        # _target_: optuna.samplers.RandomSampler
+        _target_: optuna.samplers.CmaEsSampler
+        _recursive_: False
+        
+    uncertainty_est:
+      portion: 0.5 # use last 50% of data for uncertainty estimation
+      
+
+    sample_range:
+      base_CoM: [[-0.1, -0.1, -0.1], [0.1, 0.1, 0.1]] # xyz [min, max]
+      base_inertia: [[0.005, 0.005, 0.005], [1.0, 1.0, 1.0]] # xyz [min, max]
+      base_mass: [3.0, 15.0]
+      act2tau_scalar: [0.5, 1.5]
+
+    motor_model:
+      act2tau: {}
+      act2tau_scalar: [1.0]
+
+    motion:
+      motion_file : 'sysid/data/amass/sysid_amass.pkl'   # 'spigym/data/motions/h1/h1_lift_box.pkl'
+      sample_method: 'random' # 'random' or 'sequential'
+      sequential:
+        clip_len: 800
+        strides: 400
+      random:
+        total_traj_num: 100
+        clip_len_max: 150
+        clip_len_min: 50
+      body_name: 'base'
+      motion_select: ['check']

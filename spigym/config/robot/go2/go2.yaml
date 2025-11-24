@@ -1,0 +1,139 @@
+# @package _global_
+
+defaults:
+  - robot_base
+
+robot:
+  # Observation parameters
+  num_bodies: 13 # 3 * 4 + 1
+  dof_obs_size: 12 # actuator num
+  actions_dim: 12 # actuator num
+  policy_obs_dim: -1 # place holder, defined in obs folder
+  critic_obs_dim: -1 # place holder, defined in obs folder
+  # policy_obs_dim: 45 # Jiawei
+  # critic_obs_dim: 238
+  # policy_obs_dim: 45 # Jiawei
+  # policy_obs_dim: 241 # Jiawei
+  # self_obs_max_coords: 298  # ${eval:1+20*(3+6+3+3)-3}
+
+  base_name: "base"
+  key_bodies: ["FL_foot", "FR_foot", "RL_foot", "RR_foot"] #
+  contact_bodies: ["FL_foot", "FR_foot", "RL_foot", "RR_foot"]
+  right_foot_name: "right_ankle_link"
+  left_foot_name: "left_ankle_link"
+  foot_name: "foot"
+  knee_name: "knee_link"
+  has_upper_body_dof: False
+  has_torso: False
+  # DFS order (isaacgym order)
+  dof_names: ['FL_hip_joint', 'FL_thigh_joint', 'FL_calf_joint', 'FR_hip_joint', 'FR_thigh_joint', 'FR_calf_joint', 'RL_hip_joint', 'RL_thigh_joint', 'RL_calf_joint', 'RR_hip_joint', 'RR_thigh_joint', 'RR_calf_joint']
+
+  upper_dof_names: []
+  
+  lower_dof_names: []
+    
+  # DOF properties
+  dof_pos_lower_limit_list: [-1.0472, -1.5708, -2.7227, -1.0472, -1.5708, -2.7227, -1.0472, -0.5236, -2.7227, -1.0472, -0.5236, -2.7227] # from urdf
+  dof_pos_upper_limit_list: [1.0472,  3.4907,   -0.83776,  1.0472,  3.4907,   -0.83776, 1.0472,  4.5379,   -0.83776, 1.0472,  4.5379,   -0.83776] # from urdf
+  dof_vel_limit_list:       [30.1,   30.1,    20.07,   30.1,   30.1,    20.07,  30.1,   30.1,    20.07, 30.1,   30.1,    20.07] # from urdf
+  dof_effort_limit_list:    [23.7, 23.7, 35.55, 23.7, 23.7, 35.55, 23.7, 23.7, 35.55, 23.7, 23.7, 35.55] # from urdf
+  dof_armature_list: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] #isaac lab only
+  dof_joint_friction_list: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] #isaac lab only
+
+
+  body_names: ['base', 'FL_hip', 'FL_thigh', 'FL_calf', 'FL_foot', 'FR_hip', 'FR_thigh', 'FR_calf', 'FR_foot', 'Head_upper', 'Head_lower', 'RL_hip', 'RL_thigh', 'RL_calf', 'RL_foot', 'RR_hip', 'RR_thigh', 'RR_calf', 'RR_foot']
+
+
+
+
+  terminate_after_contacts_on : [] # "knee"
+  penalize_contacts_on: ['thigh', 'calf']
+  init_state:
+    pos: [0.0, 0.0, 0.34] # x,y,z [m]
+    rot: [0.0, 0.0, 0.0, 1.0] # x,y,z,w [quat]
+    lin_vel: [0.0, 0.0, 0.0]  # x,y,z [m/s]
+    ang_vel: [0.0, 0.0, 0.0]  # x,y,z [rad/s]
+    default_joint_angles :  # : target angles [rad] when action : 0.0
+      FL_hip_joint: 0.1  # [rad]
+      FL_thigh_joint: 0.8  # [rad]
+      FL_calf_joint: -1.5  # [rad]
+      FR_hip_joint: -0.1  # [rad]
+      FR_thigh_joint: 0.8  # [rad]
+      FR_calf_joint: -1.5  # [rad]
+      RL_hip_joint: 0.1  # [rad]
+      RL_thigh_joint: 1.  # [rad]
+      RL_calf_joint: -1.5  # [rad]
+      RR_hip_joint: -0.1  # [rad]
+      RR_thigh_joint: 1.  # [rad]
+      RR_calf_joint: -1.5  # [rad]
+  
+
+  randomize_link_body_names : [
+      'base'
+  ]
+
+  control:
+    control_type: P
+    # PD Drive parameters:
+    stiffness: # [N*m/rad]
+      FL_hip_joint:    25.0   
+      RL_hip_joint:    25.0   
+      FR_hip_joint:    25.0 
+      RR_hip_joint:    25.0  
+      FL_thigh_joint:  25.0 
+      RL_thigh_joint:  25.0 
+      FR_thigh_joint:  25.0 
+      RR_thigh_joint:  25.0 
+      FL_calf_joint:   25.0 
+      RL_calf_joint:   25.0 
+      FR_calf_joint:   25.0 
+      RR_calf_joint:   25.0 
+
+    damping :
+      FL_hip_joint:    0.6   
+      RL_hip_joint:    0.6   
+      FR_hip_joint:    0.6 
+      RR_hip_joint:    0.6  
+      FL_thigh_joint:  0.6 
+      RL_thigh_joint:  0.6 
+      FR_thigh_joint:  0.6 
+      RR_thigh_joint:  0.6 
+      FL_calf_joint:   0.6 
+      RL_calf_joint:   0.6 
+      FR_calf_joint:   0.6 
+      RR_calf_joint:   0.6 
+
+    # action scale: target angle = actionScale * action + defaultAngle
+    action_scale: 0.25
+    action_clip_value: 20.0
+    clip_torques: True
+
+  asset:
+    collapse_fixed_joints: True # merge bodies connected by fixed joints. Specific fixed joints can be kept by adding " <... dont_collapse="true">
+    replace_cylinder_with_capsule: True
+    flip_visual_attachments: True
+    armature: 0.
+    thickness: 0.01
+    max_angular_velocity: 1000.
+    max_linear_velocity: 1000.
+    density: 0.001
+    angular_damping: 0.
+    linear_damping: 0.
+
+    urdf_file: "go2/urdf/${robot.asset.robot_type}.urdf"
+    usd_file: "go2/${robot.asset.robot_type}.usd"
+    xml_file: "go2/${robot.asset.robot_type}.xml"
+    robot_type: go2
+    self_collisions: 0 # 1 to disable, 0 to enable self collisions
+    default_dof_drive_mode: 3
+
+  
+
+
+  
+  sim2sim:
+    kp_fix: 0.0
+    kd_fix: 0.0
+
+
+

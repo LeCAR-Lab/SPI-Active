@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "isaac_utils"
+version = "0.0.1"
+description = "Unified torch utils for IsaacGym and IsaacSim"
+requires-python = ">=3.8"
+dependencies = []
+
+[tool.setuptools.packages.find]
+include = ["isaac_utils*"]
+

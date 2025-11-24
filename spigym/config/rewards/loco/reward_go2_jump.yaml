@@ -1,0 +1,90 @@
+# @package _global_
+
+# defaults:
+#   - reward_base
+
+rewards:
+  set_reward: Unitree_RL GYM EXACT REWARD
+  set_reward_date: 20241008
+  only_positive_rewards: False
+  reward_scales:
+      # tracking_lin_vel: 1.0
+      # tracking_ang_vel: 0.5
+      # penalty_lin_vel_z: -2.0
+      penalty_ang_vel_xy: -0.5
+      penalty_orientation: -0.5
+      penalty_torques: -0.00001
+      # penalty_dof_vel: -0.0001
+      penalty_dof_acc: -2.5e-7
+      penalty_action_rate: -0.05
+      # penalty_feet_contact_forces: -0.01
+      # penalty_stumble: -10.0
+      penalty_slippage: -0.1
+      penalty_feet_ori: -0.0
+      limits_dof_pos: -10.0
+      # limits_dof_vel: -5.0
+      # limits_torque: -0.1
+      # custom_feet_air_time: 0.5
+      # com_height_reach: 2.0
+      track_height: 2.0
+      track_x_ref: 0.0
+      # feet_no_contact: 10.0
+      base_height: 0.0
+      penalty_feet_height: -0.0
+      penalty_non_feet_contact: -0.005
+      # penalty_contact_consistency: -1.0
+      penalty_enforce_same_foot_z: -200.0
+      penalty_contact_for_air: 2.0
+      penalty_close_feet_xy: -0.0
+      # termination: -500.0
+      # penalty_in_the_air: -100.0
+      # feet_max_height_for_this_air: -100.0
+      upperbody_joint_angle_freeze: -0.0
+
+
+
+  reward_tracking_sigma:
+    lin_vel: 0.25
+    ang_vel: 0.25
+    height: 0.25
+  reward_limit:
+    soft_dof_pos_limit: 0.9
+    soft_dof_vel_limit: 0.9
+    soft_torque_limit: 0.9
+
+  feet_height_target: 0.08
+  locomotion_max_contact_force: 200.0
+  desired_feet_max_height_for_this_air: 0.12
+  base_height_target: 0.48
+  base_height: 0.34
+  phase_length: 100
+  close_feet_threshold: 0.3
+
+
+  reward_penalty_curriculum: False
+  reward_initial_penalty_scale : 1.0
+  reward_min_penalty_scale: 0.0
+  reward_max_penalty_scale: 1.0
+  reward_penalty_level_down_threshold: 400
+  reward_penalty_level_up_threshold: 700
+  reward_penalty_degree: 0.00001
+  num_compute_average_epl: 10000
+
+  reward_penalty_reward_names : [
+    "penalty_torques",
+    "penalty_dof_acc",
+    "penalty_dof_vel",
+    "penalty_action_rate",
+    "penalty_feet_contact_forces",
+    "penalty_stumble",
+    "penalty_slippage",
+    "penalty_feet_ori",
+    "penalty_in_the_air",
+    "limits_dof_pos",
+    "limits_dof_vel",
+    "limits_torque",
+    "termination",
+    "custom_feet_air_time",
+    "feet_no_contact",
+    "feet_max_height_for_this_air"]
+

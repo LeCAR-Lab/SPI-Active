@@ -1,0 +1,9 @@
+# @package _global_
+
+algo: ???
+
+env: ???
+
+robot: ???
+
+terrain: ???  # This is defined in the terrain configs

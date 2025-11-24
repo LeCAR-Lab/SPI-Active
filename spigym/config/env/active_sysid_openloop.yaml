@@ -1,0 +1,43 @@
+  # @package _global_
+
+defaults:
+  - legged_base
+
+# Env structure
+env:
+  _target_: spigym.envs.sysid.active_sysid_openloop_new.ActiveSysId_OpenLoop 
+  _recursive_: false
+  config:
+    max_episode_length_s: 25
+
+    delta_param: 0.1
+    # Reset aux -> main states every k steps (1 = every step)
+    ksync_steps: 5
+    motor_model: "act2tau_vec3_tanh"
+    default_param:
+      mass: ["base", 9.39]
+      comx: ["base", 0.0]
+      comy: ["base", 0.0]
+      comz: ["base", 0.0]
+      inertiax: ["base", 0.005]
+      inertiay: ["base", 0.005]
+      inertiaz: ["base", 0.005]
+      motor_model_hip_a: [20.0]
+      motor_model_thigh_a: [20.0]
+      motor_model_calf_a: [20.0]
+    exploration_params:
+      - mass
+      
+        
+      
+  
+
+    
+
+# Globally accessible parameters
+log_task_name: sys_id
+
+eval_overrides:
+  env:
+    config: 
+      max_episode_length_s: 25

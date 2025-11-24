@@ -1,0 +1,56 @@
+# @package _global_
+
+defaults:
+  - legged_base
+  - /robot/go2/go2
+  - /simulator/isaacgym
+  - /terrain/plane
+  - /domain_rand/NO_domain_rand
+  - /rewards/test/minimal
+  - /obs/test/minimal
+  - _self_
+
+env:
+  _target_: spigym.envs.legged_base_task.legged_robot_base.LeggedRobotBase
+  config:
+    max_episode_length_s: 5.0
+    num_envs: 1
+    headless: False
+    save_rendering_dir: logs/renderings_test
+    ckpt_dir: null
+    termination:
+      terminate_when_close_to_dof_pos_limit: False
+      terminate_when_close_to_dof_vel_limit: False
+      terminate_when_close_to_torque_limit: False
+      terminate_by_contact: False
+      terminate_by_gravity: True
+      terminate_by_low_height: False
+    termination_scales:
+      termination_close_to_dof_pos_limit: 0.98
+      termination_close_to_dof_vel_limit: 0.98
+      termination_close_to_torque_limit: 0.98
+      termination_min_base_height: 0.3
+      termination_gravity_x: 0.8
+      termination_gravity_y: 0.8
+
+log_task_name: go2_test
+num_envs: 1
+headless: False
+sim_type: isaacgym
+env_spacing: 20.0
+save_rendering_dir: logs/renderings_test
+experiment_name: go2_data_collection
+project_name: spi-active
+base_dir: logs
+timestamp: go2offline
+
+robot:
+  init_state:
+    pos: [0.0, 0.0, 0.45]
+
+domain_rand:
+  push_robots: False
+  push_interval_s: [15, 20]
+  max_push_vel_xy: 1.0
+  randomize_gains: False
+  randomize_base_mass: False

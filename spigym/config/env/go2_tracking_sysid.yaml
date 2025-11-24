@@ -1,0 +1,46 @@
+# @package _global_
+
+defaults:
+  - legged_base
+
+# Env structure
+env:
+  _target_: spigym.envs.locomotion.go2_tracking_sysid.go2_tracking_interface
+  config:
+    max_episode_length_s: 20
+    locomotion_obs_scales:
+      lin_vel: 1.0
+      ang_vel: 1.0
+      dof_pos: 1.0
+      dof_vel: 1.0
+      humanoid_commands_scale: 1.0
+    locomotion_command_ranges:
+      lin_vel_x: [-1.0, 1.0]
+      lin_vel_y: [-1.0, 1.0]
+      ang_vel_yaw: [-1.0, 1.0]
+      heading: [-3.14, 3.14]
+    locomotion_command_resampling_time: 10.0
+
+    termination:
+      terminate_by_contact: True # problematic in isaacgym when g1+terrain
+      # terminate_by_lin_vel: False
+      # terminate_by_ang_vel: False
+      terminate_by_gravity: True
+      terminate_by_low_height: False
+
+    termination_scales:
+      termination_min_base_height : 0.1
+      # termination_max_base_vel : 10.0
+      # termination_max_base_ang_vel : 5.0
+      termination_gravity_x : 0.8
+      termination_gravity_y : 0.8
+      
+
+
+# Globally accessible parameters
+log_task_name: locomotion
+
+eval_overrides:
+  env:
+    config: 
+      max_episode_length_s: 100000

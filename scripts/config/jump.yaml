@@ -1,0 +1,4 @@
+# Configuration for jump motion dataset
+data_paths:
+  - RoboVerse/spigym/data/sysid_bag/go2_jump_data.npz
+

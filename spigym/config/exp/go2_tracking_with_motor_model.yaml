@@ -1,0 +1,7 @@
+# @package _global_
+
+defaults:
+  - /algo: ppo
+  - /env: go2_tracking_with_motor_model
+
+experiment_name: TEST_Locomotion

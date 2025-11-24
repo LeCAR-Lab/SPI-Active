@@ -1,0 +1,22 @@
+# @package _global_
+
+rewards:
+  set_reward: minimal
+  set_reward_date: 20241006
+  only_positive_rewards: False
+  reward_scales: {}
+
+  reward_limit:
+    soft_dof_pos_limit: 1.0
+    soft_dof_vel_limit: 1.0
+    soft_torque_limit: 1.0
+
+  reward_penalty_curriculum: False
+  reward_initial_penalty_scale: 0.0
+  reward_min_penalty_scale: 0.0
+  reward_max_penalty_scale: 0.0
+  reward_penalty_level_down_threshold: 0
+  reward_penalty_level_up_threshold: 0
+  reward_penalty_degree: 0.0
+  reward_penalty_reward_names: []
+  num_compute_average_epl: 1

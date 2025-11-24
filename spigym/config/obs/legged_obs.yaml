@@ -1,0 +1,18 @@
+# @package _global_
+
+# Be careful when using _raw, history
+obs:
+  obs_dict:
+    actor_obs: ???
+    critic_obs: ???
+
+  # define those coumpounds in obs_dict, for example, you can define different long/short history with different length
+  obs_auxiliary: ???
+
+  obs_scales: ???
+
+  noise_scales: ???
+
+  obs_dims: ???
+  # Will store values after preprocessing, don't put anything here
+  post_compute_config: {} 

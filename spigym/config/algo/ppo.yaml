@@ -1,0 +1,47 @@
+# @package _global_
+
+algo:
+  _target_: spigym.agents.ppo.ppo.PPO
+  _recursive_: False
+  config:
+    num_learning_epochs: 5
+    num_mini_batches: 4
+    clip_param: 0.2
+    gamma: 0.99
+    lam: 0.95
+    value_loss_coef: 1.0
+    entropy_coef: 0.01
+    actor_learning_rate: 1.e-3 # 5e-4 # 1.e-3
+    critic_learning_rate: 1.e-3 # 5e-4 # 1.e-3
+    max_grad_norm: 1.0
+    use_clipped_value_loss: True
+    schedule: "adaptive"
+    desired_kl: 0.01
+
+    num_steps_per_env: 24
+    save_interval: 100
+
+    load_optimizer: True
+
+    init_noise_std: 0.8
+
+    num_learning_iterations: 1000000
+    init_at_random_ep_len: True
+    eval_callbacks: null
+
+    module_dict:
+      actor: 
+        input_dim: [actor_obs]
+        output_dim: [robot_action_dim]
+        layer_config:
+          type: MLP
+          hidden_dims: [512, 256, 128]
+          activation: ELU
+      critic: 
+        type: MLP
+        input_dim: [critic_obs]
+        output_dim: [1]
+        layer_config:
+          type: MLP
+          hidden_dims: [512, 256, 128]
+          activation: ELU

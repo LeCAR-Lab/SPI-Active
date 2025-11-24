@@ -1,0 +1,39 @@
+# @package _global_
+
+defaults:
+  - legged_base
+
+# Env structure
+env:
+  _target_: spigym.envs.active_exploration.FIM_calc.FIMCalc
+  config:
+    add_extra_action: False
+    termination:
+      terminate_by_contact: False
+      terminate_by_gravity: False
+      terminate_by_low_height: False
+      terminate_when_close_to_dof_pos_limit: False
+      terminate_when_close_to_dof_vel_limit: False
+      terminate_when_close_to_torque_limit: False
+      terminate_when_motion_end: False
+      terminate_when_motion_far: False
+      
+    termination_scales:
+      termination_min_base_height : 0.3
+      termination_gravity_x : 0.8
+      termination_gravity_y : 0.8
+      termination_motion_far_threshold : 0.5
+
+    resample_motion_when_training: False
+    resample_time_interval_s: 200000
+    noise_to_initial_level: 0
+    use_teleop_control: False
+    max_episode_length_s: 100000
+
+# Globally accessible parameters
+log_task_name: sys_id
+
+eval_overrides:
+  env:
+    config: 
+      max_episode_length_s: 100000

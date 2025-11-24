@@ -1,0 +1,100 @@
+# @package _global_
+
+# Be careful when using _raw, history
+obs:
+  obs_dict:
+    actor_obs: [
+      base_ang_vel,
+      projected_gravity,
+      dof_pos,
+      dof_vel,
+      actions,
+      last_actions,
+      phase
+      
+      
+    ]
+
+    critic_obs: [
+      base_height,
+      base_lin_vel,
+      base_ang_vel,
+      projected_gravity,
+      dof_pos,
+      dof_vel,
+      actions,
+      last_actions,
+      phase
+    ]
+
+
+  # define those coumpounds in obs_dict, for example, you can define different long/short history with different length
+  obs_auxiliary: 
+    short_history: {
+      base_ang_vel: 5,
+      projected_gravity: 5,
+      dof_pos: 5,
+      dof_vel: 5,
+      actions: 5,
+    }
+    long_history: {
+      base_ang_vel: 20,
+      projected_gravity: 20,
+      dof_pos: 20,
+      dof_vel: 20,
+      actions: 20,
+      command_lin_vel: 20,
+      command_ang_vel: 20,
+    }
+
+
+  obs_scales: {
+    base_lin_vel: 2.0,
+    base_ang_vel: 0.25,
+    projected_gravity: 1.0,
+    command_lin_vel: 1.0,
+    command_ang_vel: 1.0,
+    dof_pos: 1.0,
+    dof_vel: 0.05,
+    history: 1.0,
+    actions: 1.0,
+    clock: 1.0,
+    phase: 1.0,
+    last_actions: 1.0,
+    base_height: 1.0,
+    short_history: 1.0,
+    long_history: 1.0,
+  }
+
+  noise_scales: {
+    base_lin_vel: 0.0,
+    base_ang_vel: 0.0,
+    projected_gravity: 0.0,
+    command_lin_vel: 0.0,
+    command_ang_vel: 0.0,
+    dof_pos: 0.0,
+    dof_vel: 0.0,
+    actions: 0.0,
+    history: 0.0,
+    clock: 0.0,
+    phase: 0.0,
+    short_history: 0.0,
+    long_history: 0.0,
+    last_actions: 0.0,
+    base_height: 0.0
+  }
+
+  # obs_dims should use list instead of dict
+  # will be converted to dict in `pre_process_config`
+  obs_dims:
+    - base_height: 1
+    - phase: 6
+    - base_lin_vel: 3
+    - base_ang_vel: 3
+    - projected_gravity: 3
+    - command_lin_vel: 2
+    - command_ang_vel: 1
+    - dof_pos: ${robot.dof_obs_size}
+    - dof_vel: ${robot.dof_obs_size}
+    - actions: ${robot.dof_obs_size}
+    - last_actions: ${robot.dof_obs_size}

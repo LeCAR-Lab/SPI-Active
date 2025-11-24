@@ -1,0 +1,55 @@
+# @package _global_
+
+obs:
+  obs_dict:
+    actor_obs: [
+      base_lin_vel,
+      base_ang_vel,
+      projected_gravity,
+      dof_pos,
+      dof_vel,
+      actions,
+    ]
+    critic_obs: [
+      base_lin_vel,
+      base_ang_vel,
+      projected_gravity,
+      dof_pos,
+      dof_vel,
+      actions,
+    ]
+
+  obs_auxiliary: # define those coumpounds in obs_dict, for example, you can define different long/short history with different length
+      history: {
+        dof_pos: 5,
+        dof_vel: 5,
+        actions: 5,
+      }
+
+  obs_scales: {
+    base_lin_vel: 1.0,
+    base_ang_vel: 1.0,
+    projected_gravity: 1.0,
+    dof_pos: 1.0,
+    dof_vel: 1.0,
+    actions: 1.0,
+  }
+
+  noise_scales: {
+    base_lin_vel: 0.0,
+    base_ang_vel: 0.0,
+    projected_gravity: 0.0,
+    command_lin_vel: 0.0,
+    command_ang_vel: 0.0,
+    dof_pos: 0.05,
+    dof_vel: 0.1,
+    actions: 0.0,
+  }
+
+  obs_dims:
+    - base_lin_vel: 3
+    - base_ang_vel: 3
+    - projected_gravity: 3
+    - dof_pos: ${robot.dof_obs_size}
+    - dof_vel: ${robot.dof_obs_size}
+    - actions: ${robot.dof_obs_size}

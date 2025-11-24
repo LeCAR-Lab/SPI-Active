@@ -1,0 +1,74 @@
+# @package _global_
+
+# defaults:
+#   - reward_base
+
+rewards:
+  set_reward: Unitree_RL GYM EXACT REWARD
+  set_reward_date: 20241008
+  only_positive_rewards: False
+  reward_scales:
+      # track_height_ref: 5.0
+      # track_x_ref: 5.0
+      reach_x_target: 2.0
+      reach_z_target: -1.0
+      
+      # collision: -50.0
+      feet_height_before_jump: 3.0
+  
+      actions_symmetry: 2.0
+      lin_vel_z: 2.0
+      lin_vel_x: 2.5
+      height_control: -10.0
+
+      penalty_orientation: -2.0
+      penalty_slippage: -3.0
+      penalty_action_rate: -0.001
+      penalty_contact_during_air: -3.0
+      penalty_contact_landing: -0.05
+      feet_distance: -1.5
+      feet_x: -0.3
+
+      
+
+
+
+  reward_tracking_sigma:
+    lin_vel: 0.25
+    ang_vel: 0.25
+    height: 0.25
+  reward_limit:
+    soft_dof_pos_limit: 0.9
+    soft_dof_vel_limit: 0.9
+    soft_torque_limit: 0.9
+
+  feet_height_target: 0.08
+  x_target: 0.85
+  z_target: 0.6
+  extra_stance_length: 0.15
+  task: "fj"
+  locomotion_max_contact_force: 200.0
+  desired_feet_max_height_for_this_air: 0.12
+  base_height_target: 0.48
+  base_height: 0.34
+  phase_length: 100
+  close_feet_threshold: 0.3
+
+
+  reward_penalty_curriculum: False
+  reward_initial_penalty_scale : 1.0
+  reward_min_penalty_scale: 0.0
+  reward_max_penalty_scale: 1.0
+  reward_penalty_level_down_threshold: 50
+  reward_penalty_level_up_threshold: 100
+  reward_penalty_degree: 0.0001
+  num_compute_average_epl: 100
+  
+  reward_penalty_reward_names : [
+    # "penalty_orientation",
+    "penalty_slippage",
+    "feet_distance",
+    # "lin_vel_z",
+    "penalty_contact_during_air",
+    ]
+

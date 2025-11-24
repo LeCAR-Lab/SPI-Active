@@ -1,0 +1,7 @@
+# @package _global_
+
+defaults:
+  - /algo: ppo
+  - /env: go2_locomotion
+
+experiment_name: TEST_Locomotion

@@ -1,0 +1,245 @@
+# @package _global_
+
+# Be careful when using _raw, history
+obs:
+  obs_dict:
+    actor_obs: [
+      base_ang_vel,
+      projected_gravity,
+
+      command_lin_vel,
+      command_ang_vel,
+      command_body_height,
+      command_gait_freq,
+      command_gait_phase,
+      command_footswing_height,
+      command_body_attitude,
+      command_stance,
+
+      # timing_param,
+      clock_inputs,
+  
+
+      dof_pos,
+      dof_vel,
+      actions,
+      short_history,
+    ]
+
+    critic_obs: [
+      base_lin_vel,
+      base_ang_vel,
+      projected_gravity,
+
+      command_lin_vel,
+      command_ang_vel,
+      command_body_height,
+      command_gait_freq,
+      command_gait_phase,
+      command_footswing_height,
+      command_body_attitude,
+      command_stance,
+
+      # timing_param,
+      clock_inputs,
+     
+
+      dof_pos,
+      dof_vel,
+      actions,
+      short_history,
+    ]
+
+    # # Individual observation groups for data collection
+    # base_lin_vel_obs: [
+    #   base_lin_vel,
+    # ]
+    
+    # base_ang_vel_obs: [
+    #   base_ang_vel,
+    # ]
+    
+    # projected_gravity_obs: [
+    #   projected_gravity,
+    # ]
+    
+    # command_lin_vel_obs: [
+    #   command_lin_vel,
+    # ]
+    
+    # command_ang_vel_obs: [
+    #   command_ang_vel,
+    # ]
+    
+    # dof_pos_obs: [
+    #   dof_pos,
+    # ]
+    
+    # dof_vel_obs: [
+    #   dof_vel,
+    # ]
+  # define those coumpounds in obs_dict, for example, you can define different long/short history with different length
+  obs_auxiliary: 
+    short_history: {
+      base_ang_vel: 14,
+      projected_gravity: 14,
+      dof_pos: 14,
+      dof_vel: 14,
+      actions: 14,
+      command_lin_vel: 14,
+      command_ang_vel: 14,
+      command_body_height: 14,
+      command_gait_freq: 14,
+      command_gait_phase: 14,
+      command_footswing_height: 14,
+      command_body_attitude: 14,
+      command_stance: 14,
+      clock_inputs: 14
+    }
+
+  obs_scales: {
+    base_lin_vel: 2.0,
+    base_ang_vel: 0.25,
+    projected_gravity: 1.0,
+    command_lin_vel: 1.0,
+    command_ang_vel: 1.0,
+    command_body_height: 2.0,
+    command_gait_freq: 1.0,
+    command_gait_phase: 1.0,
+    command_footswing_height: 0.15,
+    command_body_attitude: 0.3,
+    command_stance: 1.0,
+    dof_pos: 1.0,
+    dof_vel: 0.05,
+    short_history: 1.0,
+    actions: 1.0,
+    last_action: 1.0,
+    clock_inputs: 1.0,
+  }
+
+  noise_scales: {
+    base_lin_vel: 0.0,
+    base_ang_vel: 0.0,
+    projected_gravity: 0.0,
+    command_lin_vel: 0.0,
+    command_ang_vel: 0.0,
+    command_body_height: 0.0,
+    command_gait_freq: 0.0,
+    command_gait_phase: 0.0,
+    command_footswing_height: 0.0,
+    command_body_attitude: 0.0,
+    command_stance: 0.0,
+    dof_pos: 0.0,
+    dof_vel: 0.0,
+    short_history: 0.0,
+    actions: 0.0,
+    last_action: 0.0,
+    clock_inputs: 0.0,
+  }
+
+  use_phase: False
+  add_noise_currculum: False
+  noise_initial_value: 0.05
+  noise_value_max: 1.00
+  noise_value_min: 0.00001
+  soft_dof_pos_curriculum_degree: 0.00001
+  soft_dof_pos_curriculum_level_down_threshold: 100
+  soft_dof_pos_curriculum_level_up_threshold: 900
+  # obs_dims should use list instead of dict
+  # will be converted to dict in `pre_process_config`
+  obs_dims:
+    - base_lin_vel: 3
+    - base_ang_vel: 3
+    - projected_gravity: 3
+    - command_lin_vel: 2
+    - command_ang_vel: 1
+    - dof_pos: ${robot.dof_obs_size}
+    - dof_vel: ${robot.dof_obs_size}
+    - actions: ${robot.dof_obs_size}
+    - last_action: ${robot.dof_obs_size}
+
+    - timing_param: 1
+    - clock_inputs: 4
+    - yaw: 1
+    - contact_states: 1
+    - desired_contact_states: 4
+
+    - command_body_height: 1
+    - command_gait_freq: 1
+    - command_gait_phase: 4
+    - command_footswing_height: 1
+    - command_body_attitude: 2
+    - command_stance: 2
+
+  commands: 
+    num_commands: 14
+    curriculum_type: "RewardThresholdCurriculum"
+    lipschitz_threshold: 0.9
+    curriculum_seed: 100
+    lin_vel_x: [-1.0, 1.0]
+    lin_vel_y: [-0.6, 0.6]
+    ang_vel_yaw: [-1.0, 1.0]
+    body_height_cmd: [-0.25, 0.15]
+    impulse_height_commands: False
+
+    limit_vel_x: [-5.0, 5.0]
+    limit_vel_y: [-0.6, 0.6]
+    limit_vel_yaw: [-5.0, 5.0]
+    limit_body_height: [-0.25, 0.15]
+    limit_gait_phase: [0.0, 1.0]
+    limit_gait_offset: [0.0, 1.0]
+    limit_gait_bound: [0.0, 1.0]
+    limit_gait_duration: [0.5, 0.5]
+    limit_footswing_height: [0.03, 0.035]
+    limit_gait_frequency: [2.0, 4.0]
+    limit_stance_width: [0.1, 0.45]
+    limit_stance_length: [0.35, 0.5]
+    limit_compliance: [0.0, 0.01]
+
+    limit_body_pitch: [-0.4, 0.4]
+    limit_body_roll: [-0.0, 0.0]
+
+    num_bins_vel_x: 21
+    num_bins_vel_y: 1
+    num_bins_vel_yaw: 21
+    num_bins_body_height: 1
+    num_bins_gait_frequency: 1
+    num_bins_gait_phase: 1
+    num_bins_gait_offset: 1
+    num_bins_gait_bound: 1
+    num_bins_gait_duration: 1
+    num_bins_footswing_height: 1
+    num_bins_body_pitch: 1
+    num_bins_body_roll: 1
+    num_bins_compliance: 1
+    num_bins_stance_width: 1
+    num_bins_stance_length: 1
+
+    heading: [-3.14, 3.14]
+
+    gait_phase_cmd_range: [0.0, 1.0]
+    gait_offset_cmd_range: [0.0, 1.0]
+    gait_bound_cmd_range: [0.0, 1.0]
+    gait_frequency_cmd_range: [2.0, 4.0]
+    gait_duration_cmd_range: [0.5, 0.5]
+    footswing_height_range: [0.03, 0.035]
+    body_pitch_range: [-0.4, 0.4]
+    body_roll_range: [-0.0, 0.0]
+    compliance_range: [0.0, 0.01]
+    stance_width_range: [0.1, 0.45]
+    stance_length_range: [0.35, 0.45]
+
+    exclusive_phase_offset: False
+    binary_phases: True
+    pacing_offset: False
+    balance_gait_distribution: True
+    gaitwise_curricula: True
+    
+  
+
+  curriculum_thresholds: {
+    tracking_lin_vel: 0.7,
+    tracking_ang_vel: 0.8,
+    tracking_contacts_shaped_force: 0.9,
+    tracking_contacts_shaped_vel: 0.9,
+  }

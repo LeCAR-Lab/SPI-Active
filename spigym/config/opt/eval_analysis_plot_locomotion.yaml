@@ -1,0 +1,11 @@
+# @package _global_
+
+algo:
+  config:
+    eval_callbacks:
+      analysis_plot_cb:
+        _target_: spigym.agents.callbacks.analysis_plot_locomotion.AnalysisPlotLocomotion
+        config:
+          sim_dt: 0.02
+          log_single_robot: False
+          plot_update_interval: 100

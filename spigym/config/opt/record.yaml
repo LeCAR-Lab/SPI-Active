@@ -1,0 +1,8 @@
+# @package _global_
+
+env:
+  config:
+    save_motion: False
+    eval_timestamp: ${eval_timestamp}
+    ckpt_dir: null
+    save_total_steps: 10000 

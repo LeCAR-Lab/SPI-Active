@@ -1,0 +1,293 @@
+# @package _global_
+
+defaults:
+  - robot_base
+
+robot:
+  # Observation parameters
+  num_bodies: 13 # 3 * 4 + 1
+  dof_obs_size: 12 # actuator num
+  actions_dim: 12 # actuator num
+  policy_obs_dim: -1 # place holder, defined in obs folder
+  critic_obs_dim: -1 # place holder, defined in obs folder
+  # policy_obs_dim: 45 # Jiawei
+  # critic_obs_dim: 238
+  # policy_obs_dim: 45 # Jiawei
+  # policy_obs_dim: 241 # Jiawei
+  # self_obs_max_coords: 298  # ${eval:1+20*(3+6+3+3)-3}
+
+  key_bodies: ["FL_foot", "FR_foot", "RL_foot", "RR_foot"] #
+  contact_bodies: ["FL_foot", "FR_foot", "RL_foot", "RR_foot"]
+  right_foot_name: "right_ankle_link"
+  left_foot_name: "left_ankle_link"
+  foot_name: "foot"
+  knee_name: "knee_link"
+  has_upper_body_dof: False
+  has_torso: False
+  # DFS order (isaacgym order)
+  dof_names: ['FL_hip_joint', 'FL_thigh_joint', 'FL_calf_joint', 'FR_hip_joint', 'FR_thigh_joint', 'FR_calf_joint', 'RL_hip_joint', 'RL_thigh_joint', 'RL_calf_joint', 'RR_hip_joint', 'RR_thigh_joint', 'RR_calf_joint']
+
+  upper_dof_names: []
+  
+  lower_dof_names: []
+    
+  # DOF properties
+  dof_pos_lower_limit_list: [-1.0472, -1.5708, -2.7227, -1.0472, -1.5708, -2.7227, -1.0472, -0.5236, -2.7227, -1.0472, -0.5236, -2.7227] # from urdf
+  dof_pos_upper_limit_list: [1.0472,  3.4907,   -0.83776,  1.0472,  3.4907,   -0.83776, 1.0472,  4.5379,   -0.83776, 1.0472,  4.5379,   -0.83776] # from urdf
+  dof_vel_limit_list:       [30.1,   30.1,    20.07,   30.1,   30.1,    20.07,  30.1,   30.1,    20.07, 30.1,   30.1,    20.07] # from urdf
+  dof_effort_limit_list:    [23.7, 23.7, 35.55, 23.7, 23.7, 35.55, 23.7, 23.7, 35.55, 23.7, 23.7, 35.55] # from urdf
+  dof_armature_list: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] #isaac lab only
+  dof_joint_friction_list: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] #isaac lab only
+
+
+  body_names: ['base', 'FL_hip', 'FL_thigh', 'FL_calf', 'FL_foot', 'FR_hip', 'FR_thigh', 'FR_calf', 'FR_foot', 'Head_upper', 'Head_lower', 'RL_hip', 'RL_thigh', 'RL_calf', 'RL_foot', 'RR_hip', 'RR_thigh', 'RR_calf', 'RR_foot']
+
+
+
+
+  terminate_after_contacts_on : [] # "knee"
+  penalize_contacts_on: ['thigh', 'calf']
+  init_state:
+    pos: [0.0, 0.0, 0.34] # x,y,z [m]
+    rot: [0.0, 0.0, 0.431, 0.902] # x,y,z,w [quat]
+    lin_vel: [0.0, 0.0, 0.0]  # x,y,z [m/s]
+    ang_vel: [0.0, 0.0, 0.0]  # x,y,z [rad/s]
+    default_joint_angles :  # : target angles [rad] when action : 0.0
+      FL_hip_joint: 0.1  # [rad]
+      FL_thigh_joint: 0.8  # [rad]
+      FL_calf_joint: -1.5  # [rad]
+      FR_hip_joint: -0.1  # [rad]
+      FR_thigh_joint: 0.8  # [rad]
+      FR_calf_joint: -1.5  # [rad]
+      RL_hip_joint: 0.1  # [rad]
+      RL_thigh_joint: 1.  # [rad]
+      RL_calf_joint: -1.5  # [rad]
+      RR_hip_joint: -0.1  # [rad]
+      RR_thigh_joint: 1.  # [rad]
+      RR_calf_joint: -1.5  # [rad]
+  
+
+  randomize_link_body_names : [
+      'base'
+  ]
+
+  control:
+    control_type: P
+    # PD Drive parameters:
+    stiffness: # [N*m/rad]
+      FL_hip_joint:    25.0   
+      RL_hip_joint:    25.0   
+      FR_hip_joint:    25.0 
+      RR_hip_joint:    25.0  
+      FL_thigh_joint:  25.0 
+      RL_thigh_joint:  25.0 
+      FR_thigh_joint:  25.0 
+      RR_thigh_joint:  25.0 
+      FL_calf_joint:   25.0 
+      RL_calf_joint:   25.0 
+      FR_calf_joint:   25.0 
+      RR_calf_joint:   25.0 
+
+    damping :
+      FL_hip_joint:    0.6   
+      RL_hip_joint:    0.6   
+      FR_hip_joint:    0.6 
+      RR_hip_joint:    0.6  
+      FL_thigh_joint:  0.6 
+      RL_thigh_joint:  0.6 
+      FR_thigh_joint:  0.6 
+      RR_thigh_joint:  0.6 
+      FL_calf_joint:   0.6 
+      RL_calf_joint:   0.6 
+      FR_calf_joint:   0.6 
+      RR_calf_joint:   0.6 
+
+    # action scale: target angle = actionScale * action + defaultAngle
+    action_scale: 0.25
+    action_clip_value: 20.0
+    clip_torques: True
+
+  asset:
+    collapse_fixed_joints: True # merge bodies connected by fixed joints. Specific fixed joints can be kept by adding " <... dont_collapse="true">
+    replace_cylinder_with_capsule: True
+    flip_visual_attachments: True
+    armature: 0.
+    thickness: 0.01
+    max_angular_velocity: 1000.
+    max_linear_velocity: 1000.
+    density: 0.001
+    angular_damping: 0.
+    linear_damping: 0.
+
+    urdf_file: "go2/urdf/${robot.asset.robot_type}.urdf"
+    usd_file: "go2/${robot.asset.robot_type}.usd"
+    xml_file: "go2/${robot.asset.robot_type}.xml"
+    robot_type: go2
+    self_collisions: 0 # 1 to disable, 0 to enable self collisions
+    default_dof_drive_mode: 3
+
+  force_control:
+    apply_force_link: ["left_elbow_link", "right_elbow_link"]
+    left_hand_link: "left_elbow_link"
+    right_hand_link: "right_elbow_link"
+
+
+  motion:
+    # motion_file removed (h1 reference)
+    asset:
+      # assetRoot removed (h1 reference)
+      # assetFileName removed (h1 reference)
+      # urdfFileName removed (h1 reference)
+    # humanoid_type removed (h1 reference)
+    bias_offset: False
+    has_self_collision: True
+    has_mesh: False
+    has_jt_limit: False
+    has_dof_subset: True
+    has_upright_start: True
+    has_smpl_pd_offset: False
+    remove_toe: False # For humanoid's geom toe
+    motion_sym_loss: False
+    sym_loss_coef: 1
+    big_ankle: True
+
+    has_shape_obs: false
+    has_shape_obs_disc: false
+    has_shape_variation: False
+
+    masterfoot: False
+    freeze_toe: false
+    freeze_hand: False
+    box_body: True
+    real_weight: True
+    real_weight_porpotion_capsules: True
+    real_weight_porpotion_boxes: True
+
+    body_names: [ 'pelvis', 
+                      'left_hip_yaw_link', 'left_hip_roll_link','left_hip_pitch_link', 'left_knee_link', 'left_ankle_link',
+                      'right_hip_yaw_link', 'right_hip_roll_link', 'right_hip_pitch_link', 'right_knee_link', 'right_ankle_link',
+                      'torso_link', 'left_shoulder_pitch_link', 'left_shoulder_roll_link', 'left_shoulder_yaw_link', 'left_elbow_link', 
+                      'right_shoulder_pitch_link', 'right_shoulder_roll_link', 'right_shoulder_yaw_link', 'right_elbow_link']
+    limb_weight_group: 
+      - ['left_hip_yaw_link', 'left_hip_roll_link','left_hip_pitch_link', 'left_knee_link', 'left_ankle_link',]
+      - ['right_hip_yaw_link', 'right_hip_roll_link', 'right_hip_pitch_link', 'right_knee_link', 'right_ankle_link']
+      - ['pelvis',   'torso_link']
+      - [ 'right_shoulder_pitch_link', 'right_shoulder_roll_link']
+      - ['left_shoulder_yaw_link', 'left_elbow_link']
+    dof_names: ['left_hip_yaw_link', 'left_hip_roll_link','left_hip_pitch_link', 'left_knee_link', 'left_ankle_link',
+                      'right_hip_yaw_link', 'right_hip_roll_link', 'right_hip_pitch_link', 'right_knee_link', 'right_ankle_link',
+                      'torso_link', 'left_shoulder_pitch_link', 'left_shoulder_roll_link', 'left_shoulder_yaw_link', 'left_elbow_link', 
+                      'right_shoulder_pitch_link', 'right_shoulder_roll_link', 'right_shoulder_yaw_link', 'right_elbow_link']
+
+    right_foot_name: 'right_ankle_link'
+    left_foot_name: 'left_ankle_link'
+
+    sim_with_urdf: True
+
+
+    #### Config for extension
+    nums_extend_bodies: 3
+    extend_config:
+      - joint_name: "left_hand_link"
+        parent_name: "left_elbow_link"
+        pos: [0.3, 0.0, 0.0]
+        rot: [1.0, 0.0, 0.0, 0.0]
+      - joint_name: "right_hand_link"
+        parent_name: "right_elbow_link"
+        pos: [0.3, 0.0, 0.0]
+        rot: [1.0, 0.0, 0.0, 0.0]
+      - joint_name: "head_link"
+        parent_name: "pelvis"
+        pos: [0.0, 0.0, 0.6]
+        rot: [1.0, 0.0, 0.0, 0.0]
+
+    motion_tracking_link:
+      - "left_hand_link"
+      - "right_hand_link"
+      - "head_link"
+
+    lower_body_link:
+      - "pelvis"
+      - "left_hip_yaw_link"
+      - "left_hip_roll_link"
+      - "left_hip_pitch_link"
+      - "left_knee_link"
+      - "left_ankle_link"
+      - "right_hip_yaw_link"
+      - "right_hip_roll_link"
+      - "right_hip_pitch_link"
+      - "right_knee_link"
+      - "right_ankle_link"
+
+    upper_body_link:
+      - "torso_link"
+      - "left_shoulder_pitch_link"
+      - "left_shoulder_roll_link"
+      - "left_shoulder_yaw_link"
+      - "left_elbow_link"
+      - "right_shoulder_pitch_link"
+      - "right_shoulder_roll_link"
+      - "right_shoulder_yaw_link"
+      - "right_elbow_link"
+      - "left_hand_link"
+      - "right_hand_link"
+      - "head_link"
+
+
+    base_link: "torso_link"
+    joint_matches:
+      - ["pelvis", "Pelvis"]
+      - ["left_hip_yaw_link", "L_Hip"]
+      - ["left_knee_link", "L_Knee"]
+      - ["left_ankle_link", "L_Ankle"]
+      - ["right_hip_yaw_link", "R_Hip"]
+      - ["right_knee_link", "R_Knee"]
+      - ["right_ankle_link", "R_Ankle"]
+      - ["left_shoulder_roll_link", "L_Shoulder"]
+      - ["left_elbow_link", "L_Elbow"]
+      - ["left_hand_link", "L_Hand"]
+      - ["right_shoulder_roll_link", "R_Shoulder"]
+      - ["right_elbow_link", "R_Elbow"]
+      - ["right_hand_link", "R_Hand"]
+      - ["head_link", "Head"]
+
+    smpl_pose_modifier:
+      - Pelvis: "[np.pi/2, 0, np.pi/2]"
+      - L_Shoulder: "[0, 0, -np.pi/2]"
+      - R_Shoulder: "[0, 0, np.pi/2]"
+      - L_Elbow: "[0, -np.pi/2, 0]"
+      - R_Elbow: "[0, np.pi/2, 0]"
+
+    visualization:
+      customize_color : True
+      marker_joint_colors : 
+      - [0.929, 0.867, 0.437] # pelvis
+      - [0.929, 0.867, 0.437] # left_hip_yaw_joint
+      - [0.929, 0.867, 0.437] # left_hip_roll_joint
+      - [0.929, 0.867, 0.437] # left_hip_pitch_joint
+      - [0.929, 0.867, 0.437] # left_knee_joint
+      - [0.929, 0.867, 0.437] # left_ankle_joint
+      - [0.929, 0.867, 0.437] # right_hip_yaw_joint
+      - [0.929, 0.867, 0.437] # right_hip_roll_joint
+      - [0.929, 0.867, 0.437] # right_hip_pitch_joint
+      - [0.929, 0.867, 0.437] # right_knee_joint
+      - [0.929, 0.867, 0.437] # right_ankle_joint
+      - [0.929, 0.867, 0.437] # torso_joint
+      - [0.929, 0.867, 0.437] # left_shoulder_pitch_joint
+      - [0.929, 0.867, 0.437] # left_shoulder_roll_joint
+      - [0.929, 0.867, 0.437] # left_shoulder_yaw_joint
+      - [0.929, 0.867, 0.437] # left_elbow_joint
+      - [0.929, 0.867, 0.437] # right_shoulder_pitch_joint
+      - [0.929, 0.867, 0.437] # right_shoulder_roll_joint
+      - [0.929, 0.867, 0.437] # right_shoulder_yaw_joint
+      - [0.929, 0.867, 0.437] # right_elbow_joint
+      - [0, 0.351, 0.613] # left_elbow_joint_extend
+      - [0, 0.351, 0.613] # right_elbow_joint_extend
+      - [0, 0.351, 0.613] # head_link
+
+  sim2sim:
+    kp_fix: 0.0
+    kd_fix: 0.0
+
+
+

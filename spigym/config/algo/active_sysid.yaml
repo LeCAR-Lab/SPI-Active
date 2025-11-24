@@ -1,0 +1,51 @@
+# @package _global_
+defaults:
+  - ppo
+
+algo:
+  _target_: spigym.agents.sysid.active_sysid.ActiveSysId
+  _recursive_: False
+  config:
+    policy_checkpoint: null
+    num_learning_epochs: 5
+    num_mini_batches: 4
+    project_name: "active_sysid_test"
+    experiment_dir: active_sysid_test
+    optimize:
+      iterations: 5
+      prev_study_path: null
+      sampler: 
+        # _target_: optuna.samplers.TPESampler
+        # _target_: optuna.samplers.RandomSampler
+        _target_: optuna.samplers.CmaEsSampler
+        _recursive_: False
+    
+    command:
+      command_ranges:
+        - [-1.0, 1.0] #lin_vel_x
+        - [-1.0, 1.0] #lin_vel_y
+        - [-1.0, 1.0] #ang_vel_yaw
+        - [-0.25, 0.15] #body_height_cmd
+        - [2.0, 4.0] #gait_frequency_cmd_range
+        - [0.0, 1.0] #gait_phase_cmd_range
+        - [0.0, 1.0] #gait_offset_cmd_range
+        - [0.0, 1.0] #gait_bound_cmd_range
+        - [0.5, 0.5] #gait_duration_cmd_range
+        - [0.03, 0.035] #footswing_height_range
+        - [-0.4, 0.4] #body_pitch_range
+        - [-0.0, 0.0] #body_roll_range
+        - [0.1, 0.45] #stance_width_range
+        - [0.35, 0.45] #stance_length_range
+      rollout_length: 25
+      horizon_length: 5
+      termination_rew: 0.0
+      num_rollouts_per_command: 1  # Number of rollouts per command to average over (for expectation estimation)
+      default_command: [0.5, 0.5, 0.5, 0.0, 3.0, 0.0, 0.5, 0.5, 0.5, 0.03, 0.0, 0.0, 0.3, 0.4]
+      command_sampling_idxs : [0, 2, 5]
+      # Sampling mode: "constant", "polynomial", or "bezier"
+      command_sampling_mode: "constant"
+      # For polynomial mode: degree of polynomial
+      poly_degree: 3
+      # For bezier mode: number of control points
+      num_bezier_points: 4
+      

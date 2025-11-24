@@ -1,0 +1,8 @@
+# @package _global_
+
+eval_timestamp: ${now:%Y%m%d_%H%M%S}
+eval_name: TEST
+eval_log_dir: logs_eval/${eval_name}/${eval_timestamp}
+hydra:
+  run:
+    dir: ${eval_log_dir}

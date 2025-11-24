@@ -1,0 +1,7 @@
+# Configuration for all motion datasets
+data_paths:
+  - RoboVerse/spigym/data/sysid_bag/go2_jump_data.npz
+  - RoboVerse/spigym/data/sysid_bag/go2_sine_data.npz
+  - RoboVerse/spigym/data/sysid_bag/go2_stand_data.npz
+  - RoboVerse/spigym/data/sysid_bag/go2_walk_data.npz
+

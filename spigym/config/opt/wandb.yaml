@@ -1,0 +1,11 @@
+# @package _global_
+
+use_wandb: True
+
+wandb:
+  wandb_project: null
+  wandb_tags: 'online'
+  wandb_group: null
+  wandb_id: null
+  wandb_entity: null
+  wandb_dir: ${experiment_dir}/.wandb
