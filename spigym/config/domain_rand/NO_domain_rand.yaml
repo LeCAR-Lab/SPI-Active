@@ -6,7 +6,7 @@ defaults:
 
 domain_rand:
   push_robots : False
-  push_interval_s : [5, 10]
+  push_interval_s : [3, 7]
   max_push_vel_xy : 1.0
 
   randomize_friction : False

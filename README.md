@@ -170,7 +170,7 @@ Detailed documentation in present in [Active-SysID](active_sysid.md)
 > Currently the command and dataset is for Unitree Go2. More details on setting up custom dataset, robot parameters and motor models will be released soon!
 
 ## Downstream Task Training 
-We also provide training scripts to train the different downstream tasks we evaluate in our work. More details can be found in [Downstream-Tasks](DOWNSTREAM_TASKS.md)
+We also provide training scripts to train the different downstream tasks we evaluate in our work. More details can be found in [Downstream-Tasks](spigym/envs/downstream_tasks.md)
 
 # Citation
 If you find our work useful, please consider citing us!

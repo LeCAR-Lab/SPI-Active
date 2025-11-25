@@ -1,4 +1,4 @@
 # Configuration for sine motion dataset
 data_paths:
-  - RoboVerse/spigym/data/sysid_bag/go2_sine_data.npz
+  - spigym/data/sysid_bag/go2_sine_data.npz
 

@@ -5,7 +5,7 @@ defaults:
 
 # Env structure
 env:
-  _target_: spigym.envs.sysid.active_sysid_openloop_new.ActiveSysId_OpenLoop 
+  _target_: spigym.envs.sysid.active_sysid_openloop.ActiveSysId_OpenLoop 
   _recursive_: false
   config:
     max_episode_length_s: 25

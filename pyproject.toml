@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "spigym"
+name = "spi-active"
 version = "0.0.1"
 description = "SPi-Active: Sampling-based SysID"
 readme = "README.md"
@@ -32,7 +32,7 @@ dependencies = [
   "lxml",
   "numpy-stl",
   "open3d",
-  "optuna",
+  "optuna"
 ]
 
 [project.urls]

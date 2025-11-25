@@ -5,8 +5,6 @@ This script expects a trained locomotion policy checkpoint and the Active
 SysID Hydra configs. It instantiates the ActiveSysId environment, loads the
 policy, and launches the Optuna-driven optimization to find informative
 command sequences.
-
-Typical usage: see `spigym/scripts/active_sysid.sh`.
 """
 
 import os

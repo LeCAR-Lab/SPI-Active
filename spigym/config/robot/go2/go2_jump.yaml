@@ -134,12 +134,12 @@ robot:
 
 
   motion:
-    # motion_file removed (h1 reference)
+    motion_file : 'spigym/data/motions/h1/v1/singles/0-ACCAD_Male2General_c3d_A6- Box lift_poses.pkl'   # 'spigym/data/motions/h1/h1_lift_box.pkl'
     asset:
-      # assetRoot removed (h1 reference)
-      # assetFileName removed (h1 reference)
-      # urdfFileName removed (h1 reference)
-    # humanoid_type removed (h1 reference)
+      assetRoot: "spigym/data/robots/h1/"
+      assetFileName: "h1.xml"
+      urdfFileName: "h1.urdf"
+    humanoid_type: h1
     bias_offset: False
     has_self_collision: True
     has_mesh: False
@@ -289,6 +289,17 @@ robot:
   sim2sim:
     kp_fix: 0.0
     kd_fix: 0.0
+# Override motion lib default to use the adapted H1 variant
+# motion_lib:
+#   _target_: phys_anim.utils.motion_lib_h1.H1_MotionLib
 
+# Override simulation config to use the adapted H1 variant
+# env:
+#   config:
+#     simulator:
+#       sim:
+#         fps: 200 # 1/dt , dt = 0.005
+#         control_freq_inv: 4  # decimation
+#         substeps: 1
 
 

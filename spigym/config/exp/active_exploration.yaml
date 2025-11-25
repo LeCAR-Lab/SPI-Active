@@ -1,7 +1,0 @@
-# @package _global_
-
-defaults:
-  - /algo: sysid
-  - /env: active_exploration
-
-experiment_name: TEST_SYS_ID

@@ -61,7 +61,7 @@ class BaseSimulator:
         Loads the robot assets into the simulation environment.
         save self.num_dofs, self.num_bodies, self.dof_names, self.body_names
         Args:
-            robot_config (dict): SPI Configuration for the robot asset.
+            robot_config (dict): RoboVerse Configuration for the robot asset.
         """
         raise NotImplementedError("The 'load_assets' method must be implemented in subclasses.")
 

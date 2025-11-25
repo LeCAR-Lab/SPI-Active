@@ -6256,7 +6256,7 @@ wheels = [
 ]
 
 [[package]]
-name = "spigym"
+name = "spi-active"
 version = "0.0.1"
 source = { editable = "." }
 dependencies = [

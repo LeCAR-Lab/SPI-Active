@@ -153,8 +153,8 @@ def main(override_config: OmegaConf):
 
     # from checkpoint path
 
-    SPI_ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    exported_policy_path = os.path.join(SPI_ROOT_DIR, checkpoint_dir, 'exported')
+    ROBOVERSE_ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    exported_policy_path = os.path.join(ROBOVERSE_ROOT_DIR, checkpoint_dir, 'exported')
     os.makedirs(exported_policy_path, exist_ok=True)
     exported_policy_name = checkpoint_path.split('/')[-1]
     exported_onnx_name = exported_policy_name.replace('.pt', '.onnx')
