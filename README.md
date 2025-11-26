@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<!-- Robotics: Science and Systems (RSS) 2025 -->
+<h2 style="color: green;">CoRL 2025 (ORAL)</h2>  
 
 [[Website]](https://lecar-lab.github.io/spi-active_/)
 [[Arxiv]](https://arxiv.org/abs/2505.14266)
@@ -176,12 +176,21 @@ We also provide training scripts to train the different downstream tasks we eval
 If you find our work useful, please consider citing us!
 
 ```bibtex
-@article{sobanbabu2025spiactive,
-      title={Sampling-Based System Identification with Active Exploration for Legged Robot Sim2Real Learning}, 
-      author={Nikhil Sobanbabu and Guanqi He and Tairan He and Yuxiang Yang and Guanya Shi},
-      year={2025}
-      url={https://arxiv.org/abs/2505.14266}, 
+@InProceedings{pmlr-v305-sobanbabu25a,
+  title = 	 {Sampling-based System Identification with Active Exploration for Legged Sim2Real Learning},
+  author =       {Sobanbabu, Nikhil and He, Guanqi and He, Tairan and Yang, Yuxiang and Shi, Guanya},
+  booktitle = 	 {Proceedings of The 9th Conference on Robot Learning},
+  pages = 	 {578--598},
+  year = 	 {2025},
+  editor = 	 {Lim, Joseph and Song, Shuran and Park, Hae-Won},
+  volume = 	 {305},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {27--30 Sep},
+  publisher =    {PMLR},
+  pdf = 	 {https://raw.githubusercontent.com/mlresearch/v305/main/assets/sobanbabu25a/sobanbabu25a.pdf},
+  url = 	 {https://proceedings.mlr.press/v305/sobanbabu25a.html},
 }
+
 ```
 
 # License
